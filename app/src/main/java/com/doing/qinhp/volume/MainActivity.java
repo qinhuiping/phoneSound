@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        int currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC );
+        int currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         seekBar.setMax(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         seekBar.setProgress(currentVolume);
         pb_tv.setText("当前音量" + currentVolume);
@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC , progress, 50);
-                pb_tv.setText("当前音量" + mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC ));
+                //第一个参数是调节的类型，第二个是调节的大小，第三个是显不显示调节标志
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_SHOW_UI);
+                pb_tv.setText("当前音量" + mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
                 v_tv.setText("当前progress" + progress);
             }
 
